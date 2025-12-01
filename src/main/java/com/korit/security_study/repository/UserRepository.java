@@ -22,6 +22,10 @@ public class UserRepository {
         return userMapper.getUserByUserId(userId);
     }
 
+    public Optional<User> getUserByEmail(String email) {
+        return userMapper.getUserByEmail(email);
+    }
+
     public Optional<User> addUser(User user) {
         try {
             userMapper.addUser(user);

@@ -9,6 +9,7 @@ import java.util.Optional;
 public interface UserMapper {
     Optional<User> getUserByUsername(String username);
     Optional<User> getUserByUserId(Integer userId);
+    Optional<User> getUserByEmail(String email);
     void addUser(User user);
     int updatePassword(User user);
 }
