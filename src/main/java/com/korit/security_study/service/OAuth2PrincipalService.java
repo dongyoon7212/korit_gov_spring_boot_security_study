@@ -25,6 +25,7 @@ public class OAuth2PrincipalService extends DefaultOAuth2UserService {
         //어떤 provider인지 확인
         //provider => 공급처 (google, naver, kakao)
         String provider = userRequest.getClientRegistration().getRegistrationId();
+        System.out.println("provider" + provider);
 
         String email = null;
         //공급처에서 발행한 사용자 식별자
@@ -36,8 +37,16 @@ public class OAuth2PrincipalService extends DefaultOAuth2UserService {
                 email = (String) attributes.get("email");
                 break;
             case "naver":
+                Map<String, Object> response = (Map<String, Object>) attributes.get("response");
+                providerUserid = response.get("id").toString();
+                email = (String) response.get("email");
+                System.out.println("providerUserId" + providerUserid);
+                System.out.println("email" + email);
                 break;
             case "kakao":
+                providerUserid = attributes.get("id").toString();
+                Map<String, Object> kakaoAccount = (Map<String, Object>) attributes.get("kakao_account");
+                email = (String) kakaoAccount.get("email");
                 break;
         }
 
